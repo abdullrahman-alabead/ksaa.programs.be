@@ -1,0 +1,28 @@
+name: programs
+services:
+  web:
+    build: ./django/
+    #image: programs
+    #command: gunicorn KingSalmanAcademy.wsgi:application --bind 0.0.0.0:8000
+    restart: unless-stopped
+    volumes:
+      # keep access to media files
+      - ./django/static:/app/static
+      - ./django/media:/app/media
+      - ./django/db.sqlite3:/app/db.sqlite3
+      - ./django/public:/app/public
+    expose:
+      - 8000
+
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./django/static:/app/static
+      - ./django/media:/app/media
+      - ./django/public:/app/public
+    ports:
+      - "80:80"
+    depends_on:
+      - web
