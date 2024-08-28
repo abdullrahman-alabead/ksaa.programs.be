@@ -285,6 +285,7 @@ class FormFieldsSerializer(serializers.ModelSerializer):
 
 class FormSectionsSerializer(serializers.ModelSerializer):
   headline = serializers.SerializerMethodField()
+  note = serializers.SerializerMethodField()
   form_fields = FormFieldsSerializer(many=True)
   
   class Meta:
@@ -295,6 +296,10 @@ class FormSectionsSerializer(serializers.ModelSerializer):
     if self.context['request'].headers.get('Accept-Language') == 'ar':
       return obj.arabic_headline
     return obj.english_headline
+  def get_note(self, obj):
+    if self.context['request'].headers.get('Accept-Language') == 'ar':
+      return obj.arabic_note
+    return obj.english_note
 
 
 

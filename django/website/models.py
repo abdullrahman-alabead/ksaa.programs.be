@@ -123,11 +123,15 @@ class FormPage(models.Model):
   arabic_success_text = models.CharField(max_length=200, default="", null= True, blank=True)
   english_failed_text = models.CharField(max_length=200, default="", null= True, blank=True)
   arabic_failed_text = models.CharField(max_length=200, default="", null= True, blank=True)
+  english_missing_text = models.CharField(max_length=200, default="", null= True, blank=True)
+  arabic_missing_text = models.CharField(max_length=200, default="", null= True, blank=True)
 
 
 class FormSections(models.Model):
   english_headline = models.CharField(max_length=200, default="", null= True, blank=True)
   arabic_headline = models.CharField(max_length=200, default="", null= True, blank=True)
+  english_note = models.CharField(max_length=200, default="", null= True, blank=True)
+  arabic_note = models.CharField(max_length=200, default="", null= True, blank=True)
 
 
 class FormFields(models.Model):
