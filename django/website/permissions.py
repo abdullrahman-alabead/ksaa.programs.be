@@ -1,7 +1,7 @@
 
 from rest_framework.permissions import BasePermission
 
-ALLOWED_DOMAIN = 'https://ksaa.gov.sa'
+ALLOWED_DOMAIN = 'https://programs.ksaa.gov.sa'
 
 class IsFromAllowedDomain(BasePermission):
     """
